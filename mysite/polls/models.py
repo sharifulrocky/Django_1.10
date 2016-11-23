@@ -2,10 +2,17 @@ from django.db import models
 from django.utils import timezone
 import datetime
 
+STATUS_CHOICES = (
+    ('d', 'Draft'),
+    ('p', 'Published'),
+    ('w', 'Withdrawn'),
+)
+
 
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
+    status = models.CharField(max_length=1, choices=STATUS_CHOICES)
     twitter = models.CharField(max_length=150, blank=True)
     facebook = models.CharField(max_length=150, blank=True)
 
