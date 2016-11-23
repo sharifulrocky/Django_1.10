@@ -6,6 +6,8 @@ import datetime
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
+    twitter = models.CharField(max_length=150, blank=True)
+    facebook = models.CharField(max_length=150, blank=True)
 
     def was_published_recently(self):
         now = timezone.now()
@@ -20,5 +22,6 @@ class Choice(models.Model):
     choice_text = models.CharField(max_length=200)
     votes = models.IntegerField(default=0)
 
+    # Can't add ForeignKey field as a object naming
     def __str__(self):
-        return self.question
+        return self.choice_text
